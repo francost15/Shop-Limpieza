@@ -8,9 +8,9 @@ import { Loading } from "@/components/ui/Loading"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
+
 import { Toaster } from "@/components/ui/toaster"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {  SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export interface Inventario {
   cantidad: number;
@@ -29,8 +29,6 @@ export default function InventarioManagement() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [currentInventario, setCurrentInventario] = useState<Inventario | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
 
   useEffect(() => {
     const fetchInventarios = async () => {
@@ -133,7 +131,6 @@ export default function InventarioManagement() {
                 <Label htmlFor="status" className="text-right">
                   Status
                 </Label>
-                <Select id="status" name="status" className="col-span-3" required>
                   <SelectTrigger>
                     <SelectValue placeholder="Seleccionar estado" />
                   </SelectTrigger>
@@ -141,7 +138,6 @@ export default function InventarioManagement() {
                     <SelectItem value="A">Activo</SelectItem>
                     <SelectItem value="I">Inactivo</SelectItem>
                   </SelectContent>
-                </Select>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="usuario_mod" className="text-right">
@@ -151,9 +147,7 @@ export default function InventarioManagement() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Guardando..." : "Guardar Inventario"}
-              </Button>
+           
             </DialogFooter>
           </form>
         </DialogContent>
@@ -183,15 +177,7 @@ export default function InventarioManagement() {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select id="status" name="status" defaultValue={currentInventario.status} className="col-span-3" required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="A">Activo</SelectItem>
-                      <SelectItem value="I">Inactivo</SelectItem>
-                    </SelectContent>
-                  </Select>
+                
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="usuario_mod" className="text-right">
@@ -200,11 +186,7 @@ export default function InventarioManagement() {
                   <Input id="usuario_mod" name="usuario_mod" defaultValue={currentInventario.usuario_mod || ""} className="col-span-3" />
                 </div>
               </div>
-              <DialogFooter>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Actualizando..." : "Actualizar Inventario"}
-                </Button>
-              </DialogFooter>
+            
             </form>
           )}
         </DialogContent>

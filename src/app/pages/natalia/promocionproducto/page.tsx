@@ -8,9 +8,6 @@ import { Loading } from "@/components/ui/Loading"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
-import { Toaster } from "@/components/ui/toaster"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export interface PromocionProducto {
   fecha_creac: string;
@@ -29,8 +26,6 @@ export default function PromocionProductoManagement() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [currentPromocionProducto, setCurrentPromocionProducto] = useState<PromocionProducto | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
 
   useEffect(() => {
     const fetchPromocionProductos = async () => {
@@ -133,15 +128,7 @@ export default function PromocionProductoManagement() {
                 <Label htmlFor="status" className="text-right">
                   Status
                 </Label>
-                <Select id="status" name="status" className="col-span-3" required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar estado" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="A">Activo</SelectItem>
-                    <SelectItem value="I">Inactivo</SelectItem>
-                  </SelectContent>
-                </Select>
+                
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="usuario_mod" className="text-right">
@@ -151,9 +138,7 @@ export default function PromocionProductoManagement() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Guardando..." : "Guardar Producto en Promoción"}
-              </Button>
+            
             </DialogFooter>
           </form>
         </DialogContent>
@@ -183,15 +168,7 @@ export default function PromocionProductoManagement() {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select id="status" name="status" defaultValue={currentPromocionProducto.status} className="col-span-3" required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="A">Activo</SelectItem>
-                      <SelectItem value="I">Inactivo</SelectItem>
-                    </SelectContent>
-                  </Select>
+               
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="usuario_mod" className="text-right">
@@ -201,16 +178,12 @@ export default function PromocionProductoManagement() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Actualizando..." : "Actualizar Producto en Promoción"}
-                </Button>
+              
               </DialogFooter>
             </form>
           )}
         </DialogContent>
       </Dialog>
-
-      <Toaster />
     </div>
   )
 }

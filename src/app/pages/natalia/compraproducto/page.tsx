@@ -8,9 +8,7 @@ import { Loading } from "@/components/ui/Loading"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export interface CompraProducto {
   compra_producto_id: number;
@@ -32,8 +30,6 @@ export default function CompraProductoManagement() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [currentCompra, setCurrentCompra] = useState<CompraProducto | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
 
   useEffect(() => {
     const fetchCompras = async () => {
@@ -157,15 +153,7 @@ export default function CompraProductoManagement() {
                 <Label htmlFor="status" className="text-right">
                   Status
                 </Label>
-                <Select id="status" name="status" className="col-span-3" required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar estado" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="A">Activo</SelectItem>
-                    <SelectItem value="I">Inactivo</SelectItem>
-                  </SelectContent>
-                </Select>
+              
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="usuario_mod" className="text-right">
@@ -175,9 +163,7 @@ export default function CompraProductoManagement() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Guardando..." : "Guardar Compra"}
-              </Button>
+
             </DialogFooter>
           </form>
         </DialogContent>
@@ -225,15 +211,7 @@ export default function CompraProductoManagement() {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select id="status" name="status" defaultValue={currentCompra.status} className="col-span-3" required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="A">Activo</SelectItem>
-                      <SelectItem value="I">Inactivo</SelectItem>
-                    </SelectContent>
-                  </Select>
+                 
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="usuario_mod" className="text-right">
@@ -243,9 +221,7 @@ export default function CompraProductoManagement() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Actualizando..." : "Actualizar Compra"}
-                </Button>
+            
               </DialogFooter>
             </form>
           )}

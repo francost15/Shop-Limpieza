@@ -8,9 +8,7 @@ import { Loading } from "@/components/ui/Loading"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export interface Categoria {
   categoria_id: number;
@@ -29,9 +27,7 @@ export default function CategoriaManagement() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [currentCategoria, setCurrentCategoria] = useState<Categoria | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
-
+  const [isSubmitting] = useState(false)
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
@@ -133,15 +129,7 @@ export default function CategoriaManagement() {
                 <Label htmlFor="status" className="text-right">
                   Status
                 </Label>
-                <Select id="status" name="status" className="col-span-3" required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar estado" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="A">Activo</SelectItem>
-                    <SelectItem value="I">Inactivo</SelectItem>
-                  </SelectContent>
-                </Select>
+             
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="usuario_mod" className="text-right">
@@ -183,15 +171,7 @@ export default function CategoriaManagement() {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select id="status" name="status" defaultValue={currentCategoria.status} className="col-span-3" required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="A">Activo</SelectItem>
-                      <SelectItem value="I">Inactivo</SelectItem>
-                    </SelectContent>
-                  </Select>
+            
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="usuario_mod" className="text-right">

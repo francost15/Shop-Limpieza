@@ -8,9 +8,6 @@ import { Loading } from "@/components/ui/Loading"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
-import { Toaster } from "@/components/ui/toaster"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export interface Producto {
   categoria_id: number;
@@ -32,8 +29,6 @@ export default function ProductoManagement() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [currentProducto, setCurrentProducto] = useState<Producto | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -157,15 +152,7 @@ export default function ProductoManagement() {
                 <Label htmlFor="status" className="text-right">
                   Status
                 </Label>
-                <Select id="status" name="status" className="col-span-3" required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar estado" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="A">Activo</SelectItem>
-                    <SelectItem value="I">Inactivo</SelectItem>
-                  </SelectContent>
-                </Select>
+           
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="usuario_mod" className="text-right">
@@ -175,9 +162,7 @@ export default function ProductoManagement() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Guardando..." : "Guardar Producto"}
-              </Button>
+            
             </DialogFooter>
           </form>
         </DialogContent>
@@ -225,15 +210,7 @@ export default function ProductoManagement() {
                   <Label htmlFor="status" className="text-right">
                     Status
                   </Label>
-                  <Select id="status" name="status" defaultValue={currentProducto.status} className="col-span-3" required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="A">Activo</SelectItem>
-                      <SelectItem value="I">Inactivo</SelectItem>
-                    </SelectContent>
-                  </Select>
+              
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="usuario_mod" className="text-right">
@@ -243,16 +220,14 @@ export default function ProductoManagement() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Actualizando..." : "Actualizar Producto"}
-                </Button>
+           
               </DialogFooter>
             </form>
           )}
         </DialogContent>
       </Dialog>
 
-      <Toaster />
+      
     </div>
   )
 }
