@@ -18,12 +18,12 @@ export default function HomeNatalia() {
             Gestión de Categorías
           </Button>
         </Link>
-        <Link href="/pages/natalia/compra_producto">
+        <Link href="/pages/natalia/compraproducto">
           <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Gestión de Compras de Productos
           </Button>
         </Link>
-        <Link href="/pages/natalia/factura_detalle">
+        <Link href="/pages/natalia/facturadetalle">
           <Button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
             Gestión de Detalles de Facturas
           </Button>
@@ -43,7 +43,7 @@ export default function HomeNatalia() {
             Gestión de Promociones
           </Button>
         </Link>
-        <Link href="/pages/natalia/promocion_producto">
+        <Link href="/pages/natalia/promocionproducto">
           <Button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
             Gestión de Productos en Promoción
           </Button>
